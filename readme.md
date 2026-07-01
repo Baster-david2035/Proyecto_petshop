@@ -31,6 +31,84 @@ Para resolver la problemática del manejo deficiente, descentralizado o inseguro
     La plataforma ofrece una solución web integral con un doble beneficio:
     1.	Administración eficiente: Optimiza las tareas operativas de los encargados mediante herramientas administrativas robustas y flujos de trabajo claros.
     2.	Accesibilidad al usuario: Facilita y simplifica el proceso de adopción para los clientes, promoviendo una interacción amigable, transparente y rápida con la organización.
+    
+Estructura del proyecto
+app/
+├── config/
+│   └── database.py                
+│
+├── controller/                    
+│   ├── adoption_controller.py
+│   ├── client_controller.py
+│   ├── extra_service_controller.py
+│   ├── pet_controller.py
+│   ├── solicitud_controller.py
+│   └── user_controller.py
+│
+├── entity/                        
+│   ├── adoption.py
+│   ├── client.py
+│   ├── extra_service.py
+│   ├── pet.py
+│   ├── solicitud.py
+│   └── user.py
+│
+├── html/                          
+│   ├── css/
+│   └── adopcion.css
+│   └── home.css
+│   └── login.css
+│   └── recuperacion.css
+│   └── registro.css
+│   └── servicios.css             
+│   ├── images/ 
+│   └── imagen1.jpeg
+│   └── images2.jpg
+│   └── images3.jpg
+│   └── images4.jpg
+│   └── images5.jpeg
+│   └── imagen6.jpg                
+│   ├── js/   
+├── admin.js                   
+│   └── adopcion.js                
+│   └── home.js                    
+│   └── login.js                   
+│   └── recuperacion.js            
+│   └── registro.js                
+│   └── servicios.js              
+│   └── session.js                               
+│   ├── admin.html                 
+│   ├── adopcion.html              
+│   ├── home.html                  
+│   ├── login.html                 
+│   ├── recuperacion.html          
+│   ├── registro.html              
+│   └── servicios.html             
+├── repository/                  
+│   ├── adoption_repository.py
+│   ├── client_repository.py
+│   ├── extra_service_repository.py
+│   ├── pet_repository.py
+│   ├── solicitud_repository.py
+│   └── user_repository.py
+│
+├── schemas/                      
+│   ├── adoption_schema.py
+│   ├── client_schema.py
+│   ├── extra_service_schema.py
+│   ├── pet_schema.py
+│   ├── solicitud_schema.py
+│   └── user_schema.py
+│
+└── service/                       
+    ├── adoption_service.py
+    ├── client_service.py
+    ├── extra_service_service.py
+    ├── pet_service.py
+    ├── solicitud_service.py
+    └── user_service.py
+└── main.py/                       
+
 
 
 
