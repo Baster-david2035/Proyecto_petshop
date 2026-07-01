@@ -26,6 +26,13 @@ Para resolver la problemática del manejo deficiente, descentralizado o inseguro
     •	Adopciones y Solicitudes: Automatización y seguimiento del flujo de adopción, desde la petición inicial del cliente hasta la aprobación final, garantizando la trazabilidad del proceso.
     •	Usuarios: Módulo de autenticación y control de acceso basado en roles (ej. Administrador, Cliente) para asegurar los datos.
 
+3. Propósito y Solución
+    Este proyecto surge para erradicar el impacto negativo de una gestión de datos deficiente. Mediante la centralización de la información en los módulos mencionados, se logra un ecosistema digital fluido, funcional y eficiente.
+    La plataforma ofrece una solución web integral con un doble beneficio:
+    1.	Administración eficiente: Optimiza las tareas operativas de los encargados mediante herramientas administrativas robustas y flujos de trabajo claros.
+    2.	Accesibilidad al usuario: Facilita y simplifica el proceso de adopción para los clientes, promoviendo una interacción amigable, transparente y rápida con la organización.
+
+
 
 
 
