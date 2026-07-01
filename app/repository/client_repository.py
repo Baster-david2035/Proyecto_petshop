@@ -2,29 +2,34 @@ from app.config.database import SessionLocal
 from app.entity.client import ClienteORM
 
 class ClienteRepository:
-    def __init__(self):
-        self.db = SessionLocal()
+    def create(self, cliente: ClienteORM):
+        with SessionLocal() as db:
+            db.add(cliente)
+            db.commit()
+            db.refresh(cliente)
+            db.expunge(cliente)
+            return cliente
 
-    def create(self, cliente):
-        self.db.add(cliente)
-        self.db.commit()
-        return cliente
-    
     def exist(self, id_cliente):
-        cliente = self.db.query(ClienteORM).filter_by(id_cliente=id_cliente).first()
-        if cliente:
-            return True
-        return False
+        with SessionLocal() as db:
+            return db.query(ClienteORM).filter_by(id_cliente=id_cliente).first() is not None
+
+    def get_by_correo(self, correo):
+        with SessionLocal() as db:
+            return db.query(ClienteORM).filter_by(correo=correo).first()
 
     def get_all(self):
-        return self.db.query(ClienteORM).all()
+        with SessionLocal() as db:
+            return db.query(ClienteORM).all()
 
     def get(self, id_cliente):
-        return self.db.query(ClienteORM).filter_by(id_cliente=id_cliente).first()
+        with SessionLocal() as db:
+            return db.query(ClienteORM).filter_by(id_cliente=id_cliente).first()
 
     def delete(self, id_cliente):
-        obj = self.get(id_cliente)
-        if obj:
-            self.db.delete(obj)
-            self.db.commit()
-        return obj
+        with SessionLocal() as db:
+            obj = db.query(ClienteORM).filter_by(id_cliente=id_cliente).first()
+            if obj:
+                db.delete(obj)
+                db.commit()
+            return obj

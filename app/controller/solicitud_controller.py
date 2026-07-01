@@ -8,6 +8,7 @@ service = SolicitudService()
 
 @router.post("/", response_model=SolicitudSchema)
 def crear_solicitud(solicitud: SolicitudCreateSchema):
+    """Adopcion: el boton de solicitud envia los valores del formulario."""
     try:
         return service.crear(solicitud)
     except ValueError as e:
@@ -16,6 +17,11 @@ def crear_solicitud(solicitud: SolicitudCreateSchema):
 @router.get("/", response_model=list[SolicitudSchema])
 def listar_solicitudes():
     return service.obtener_todos()
+
+@router.get("/cliente/{id_cliente}", response_model=list[SolicitudSchema])
+def solicitudes_por_cliente(id_cliente: int):
+    """Home: el cliente ve en tiempo real el estado de sus solicitudes."""
+    return service.obtener_por_cliente(id_cliente)
 
 @router.get("/{id_solicitud}", response_model=SolicitudSchema)
 def obtener_solicitud(id_solicitud: int):
@@ -30,6 +36,3 @@ def actualizar_estado(id_solicitud: int, estado: str):
     if not solicitud:
         raise HTTPException(status_code=404, detail="Solicitud no encontrada")
     return solicitud
-
-
-

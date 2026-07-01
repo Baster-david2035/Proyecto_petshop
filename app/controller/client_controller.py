@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.service.client_service import ClienteService
-from app.schemas.client_schema import ClienteSchema
+from app.schemas.client_schema import ClienteSchema, ClienteCreateSchema
 
 router = APIRouter(prefix="/clientes", tags=["Clientes"])
 
@@ -8,7 +8,8 @@ service = ClienteService()
 
 
 @router.post("/", response_model=ClienteSchema)
-def crear_cliente(cliente: ClienteSchema):
+def crear_cliente(cliente: ClienteCreateSchema):
+    """Metodo para agregar un cliente a la tabla de clientes (estado siempre Activo)."""
     try:
         return service.create(cliente)
     except ValueError as e:

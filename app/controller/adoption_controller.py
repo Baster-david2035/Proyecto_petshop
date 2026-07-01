@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.service.adoption_service import AdopcionService
-from app.schemas.adoption_schema import AdopcionSchema
+from app.schemas.adoption_schema import AdopcionSchema, AdopcionCreateSchema, PagoSchema
 
 router = APIRouter(prefix="/adopciones", tags=["Adopciones"])
 
@@ -8,9 +8,22 @@ service = AdopcionService()
 
 
 @router.post("/", response_model=AdopcionSchema)
-def crear_adopcion(adopcion: AdopcionSchema):
+def crear_adopcion(adopcion: AdopcionCreateSchema):
     try:
         return service.create(adopcion)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.post("/pagar", response_model=AdopcionSchema)
+def pagar_servicios(pago: PagoSchema):
+    """
+    Servicios: al realizar el pago se guarda la adopcion, se finaliza la
+    solicitud y la mascota cambia su estado a 'Adoptada'. Si la solicitud
+    ya fue atendida, no se permite volver a pagar.
+    """
+    try:
+        return service.procesar_pago(pago)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 

@@ -3,33 +3,35 @@ from app.entity.adoption import AdopcionORM
 from sqlalchemy import func
 
 class AdopcionRepository:
-    def __init__(self):
-        self.db = SessionLocal()
-
-    def create(self, adopcion):
-        self.db.add(adopcion)
-        self.db.commit()
-        return adopcion
+    def create(self, adopcion: AdopcionORM):
+        with SessionLocal() as db:
+            db.add(adopcion)
+            db.commit()
+            db.refresh(adopcion)
+            db.expunge(adopcion)
+            return adopcion
 
     def get_all(self):
-        return self.db.query(AdopcionORM).all()
-    
+        with SessionLocal() as db:
+            return db.query(AdopcionORM).all()
+
     def get_by_id(self, id_adopcion):
-        adopcion = self.db.query(AdopcionORM).filter_by(id_adopcion=id_adopcion).first()
-        if not adopcion:
-            return None
-        return adopcion
-    
+        with SessionLocal() as db:
+            return db.query(AdopcionORM).filter_by(id_adopcion=id_adopcion).first()
+
     def delete(self, id_adopcion):
-        adopcion = self.db.query(AdopcionORM).filter_by(id_adopcion=id_adopcion).first()
-        if not adopcion:
-            return False
-        self.db.delete(adopcion)
-        self.db.commit()
-        return True 
+        with SessionLocal() as db:
+            adopcion = db.query(AdopcionORM).filter_by(id_adopcion=id_adopcion).first()
+            if not adopcion:
+                return False
+            db.delete(adopcion)
+            db.commit()
+            return True
 
     def get_by_cliente(self, id_cliente):
-        return self.db.query(AdopcionORM).filter_by(id_cliente=id_cliente).all()
+        with SessionLocal() as db:
+            return db.query(AdopcionORM).filter_by(id_cliente=id_cliente).all()
 
     def total_ganancias(self):
-        return self.db.query(func.sum(AdopcionORM.costo)).scalar()
+        with SessionLocal() as db:
+            return db.query(func.sum(AdopcionORM.costo)).scalar()

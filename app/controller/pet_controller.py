@@ -9,6 +9,7 @@ service = MascotaService()
 
 @router.post("/", response_model=MascotaSchema)
 def crear_mascota(mascota: MascotaCreateSchema):
+    """Metodo para agregar una mascota a la tabla de mascotas."""
     try:
         return service.crear(mascota)
     except ValueError as e:
@@ -18,6 +19,12 @@ def crear_mascota(mascota: MascotaCreateSchema):
 @router.get("/", response_model=list[MascotaSchema])
 def listar_mascotas():
     return service.obtener_todas()
+
+
+@router.get("/disponibles", response_model=list[MascotaSchema])
+def listar_mascotas_disponibles():
+    """Adopcion: solo carga los animalitos disponibles para adoptar."""
+    return service.obtener_disponibles()
 
 
 @router.get("/{id_mascota}", response_model=MascotaSchema)
@@ -34,3 +41,11 @@ def actualizar_estado(id_mascota: int, estado: str):
     if not mascota:
         raise HTTPException(status_code=404, detail="Mascota no encontrada")
     return mascota
+
+
+@router.delete("/{id_mascota}")
+def eliminar_mascota(id_mascota: int):
+    eliminado = service.eliminar(id_mascota)
+    if not eliminado:
+        raise HTTPException(status_code=404, detail="Mascota no encontrada")
+    return {"mensaje": "Mascota eliminada"}

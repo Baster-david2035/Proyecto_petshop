@@ -7,12 +7,14 @@ class ClienteORM(Base):
     id_cliente = Column(Integer, primary_key=True, autoincrement=True)
     nombre = Column(String(100), nullable=False)
     telefono = Column(String(20), nullable=False)
-    correo = Column(String(100), nullable=False)
+    correo = Column(String(100), nullable=False, unique=True)
+    estado = Column(String(20), nullable=False, default="Activo")  # Siempre Activo al crearse
 
     def __repr__(self):
         return (
             f"Cliente(id_cliente={self.id_cliente}, "
             f"nombre='{self.nombre}', "
             f"telefono='{self.telefono}', "
-            f"correo='{self.correo}')"
+            f"correo='{self.correo}', "
+            f"estado='{self.estado}')"
         )

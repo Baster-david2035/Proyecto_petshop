@@ -2,23 +2,32 @@ from app.config.database import SessionLocal
 from app.entity.solicitud import SolicitudORM
 
 class SolicitudRepository:
-    def __init__(self):
-        self.db = SessionLocal()
-
-    def create(self, solicitud):
-        self.db.add(solicitud)
-        self.db.commit()
-        return solicitud
+    def create(self, solicitud: SolicitudORM):
+        with SessionLocal() as db:
+            db.add(solicitud)
+            db.commit()
+            db.refresh(solicitud)
+            db.expunge(solicitud)
+            return solicitud
 
     def get_all(self):
-        return self.db.query(SolicitudORM).all()
+        with SessionLocal() as db:
+            return db.query(SolicitudORM).all()
 
-    def get(self, id_mascota):
-        return self.db.query(SolicitudORM).filter_by(id_mascota=id_mascota).first()
+    def get(self, id_solicitud):
+        with SessionLocal() as db:
+            return db.query(SolicitudORM).filter_by(id_solicitud=id_solicitud).first()
 
-    def update_estado(self, id_mascota, estado):
-        solicitud = self.get(id_mascota)
-        if solicitud:
-            solicitud.estado = estado
-            self.db.commit()
-        return solicitud
+    def get_by_cliente(self, id_cliente):
+        with SessionLocal() as db:
+            return db.query(SolicitudORM).filter_by(id_cliente=id_cliente).all()
+
+    def update_estado(self, id_solicitud, estado):
+        with SessionLocal() as db:
+            solicitud = db.query(SolicitudORM).filter_by(id_solicitud=id_solicitud).first()
+            if solicitud:
+                solicitud.estado = estado
+                db.commit()
+                db.refresh(solicitud)
+                db.expunge(solicitud)
+            return solicitud
