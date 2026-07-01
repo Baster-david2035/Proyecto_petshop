@@ -6,15 +6,15 @@ class ClienteService:
         self.repo = ClienteRepository()
 
     def create(self, cliente):
-        if self.repo.existe(cliente.id_cliente):
+        if self.repo.exist(cliente.id_cliente):
             raise ValueError("Cliente ya existe")
-        return self.repo.agregar(cliente)
+        return self.repo.create(cliente)
 
     def get_all(self):
-        return self.repo.obtener_todos()
+        return self.repo.get_all()
 
     def get(self, id_cliente):
-        return self.repo.buscar_por_id(id_cliente)
+        return self.repo.get(id_cliente)
 
     def delete(self, id_cliente):
-        return self.repo.eliminar(id_cliente)
+        return self.repo.delete(id_cliente)

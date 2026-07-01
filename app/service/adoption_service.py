@@ -9,16 +9,19 @@ class AdopcionService:
         adopcion.fecha_adopcion = str(datetime.now())
 
         # regla de negocio: mascota adoptada
-        return self.repo.agregar(adopcion)
+        return self.repo.create(adopcion)
+    
+    def get_by_id(self, id_adopcion):
+        return self.repo.get_by_id(id_adopcion)
 
     def get_all(self):
-        return self.repo.obtener_todos()
+        return self.repo.get_all()
 
     def get_by_client(self, id_cliente):
-        return self.repo.obtener_por_cliente(id_cliente)
+        return self.repo.get_by_cliente(id_cliente)
 
     def delete(self, id_adopcion):
-        return self.repo.eliminar(id_adopcion)
+        return self.repo.delete(id_adopcion)
 
     def ganancias(self):
-        return self.repo.obtener_ganancias_totales()
+        return self.repo.total_ganancias()

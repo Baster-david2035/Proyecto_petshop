@@ -14,3 +14,6 @@ class UsuarioService:
         if self.repo.get_by_username(username):
             raise ValueError("Usuario ya existe")
         return self.repo.create(username, password)
+
+    def get_all(self):
+        return self.repo.get_all()

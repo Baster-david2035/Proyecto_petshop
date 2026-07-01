@@ -4,15 +4,17 @@ class MascotaService:
     def __init__(self):
         self.repo = MascotaRepository()
 
-    def create(self, mascota):
-        return self.repo.agregar(mascota)
+    def crear(self, mascota):
+        return self.repo.create(mascota)
 
-    def get_all(self):
-        return self.repo.obtener_todos()
+    def obtener_todas(self):
+        return self.repo.get_all()
+    
+    def obtener_por_id(self, id_mascota):
+        return self.repo.get(id_mascota)
 
-    def update_status(self, id_mascota, estado):
-        mascota = self.repo.buscar_por_id(id_mascota)
+    def actualizar_estado(self, id_mascota, estado):
+        mascota = self.repo.get(id_mascota)
         if not mascota:
             return None
-        mascota.estado = estado
-        return self.repo.guardar()
+        return self.repo.update_estado(id_mascota, estado)
