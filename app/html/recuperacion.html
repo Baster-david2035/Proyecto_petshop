@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Restablecer Contraseña</title>
+    <link rel="stylesheet" href="css/recuperacion.css">
+</head>
+<body class="login-split-body">
+
+    <div class="login-split-container">
+        
+        <div class="login-brand-side">
+            <div class="brand-overlay"></div>
+            <div class="brand-welcome-content">
+                <span class="brand-emoji">🐾</span>
+                <h1>PetShop</h1>
+                <p>Actualiza tus credenciales de forma segura para volver a ingresar al panel.</p>
+            </div>
+        </div>
+
+        <div class="login-form-side">
+            <div class="login-box-clean">
+                <h2>Restablecer Contraseña</h2>
+                <p class="login-subtitle">Ingresa tu correo registrado y define la nueva contraseña que usarás de ahora en adelante.</p>
+
+                <div id="recovery-success-message" class="login-toast-success">
+                    🎉 Contraseña actualizada con éxito. Redirigiendo al login...
+                </div>
+
+                <form id="recoveryDirectForm">
+                    <div class="input-group-modern">
+                        <label for="recovery-email">Correo Electrónico</label>
+                        <input type="email" id="recovery-email" placeholder="ejemplo@correo.com" required autocomplete="email">
+                    </div>
+
+                    <div class="input-group-modern password-wrapper">
+                        <label for="new-password">Nueva Contraseña</label>
+                        <div class="password-relative-container">
+                            <input type="password" id="new-password" placeholder="Mínimo 8 caracteres" required autocomplete="new-password">
+                            <button type="button" id="toggleNewPassword" class="toggle-password-btn">👁</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btnRecoverySubmit" class="btn-login-modern">
+                        <span id="btn-recovery-text">Actualizar Contraseña</span>
+                        <div id="btn-recovery-spinner" class="btn-spinner-loader"></div>
+                    </button>
+                </form>
+
+                <p class="register-prompt">
+                    ¿Recordaste tus datos originales? <a href="login.html">Volver al Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/session.js"></script>
+    <script src="js/recuperacion.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Panel de Administración</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body-layout">
+
+    <div class="admin-dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-brand">🐾 Admin PetShop</div>
+            <ul class="sidebar-menu">
+                <li><a href="#clientes">Clientes</a></li>
+                <li><a href="#adopciones">Control de Mascotas</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#registro">Registro de Adopciones</a></li>
+                <li><a href="#finanzas">Finanzas</a></li>
+                <li class="sidebar-logout"><a href="login.html" onclick="cerrarSesion()"> Cerrar Sesión</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Panel de Control Operativo</h1>
+                <p>Bienvenido de vuelta, Administrador.</p>
+            </header>
+
+            <div class="kpi-container">
+                <div class="kpi-card">
+                    <h3>Total Clientes</h3>
+                    <p class="kpi-number" id="kpi-users">0</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Solicitudes Pendientes</h3>
+                    <p class="kpi-number" id="kpi-requests" style="color: #ff9f1c;">0</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Mascotas en Sistema</h3>
+                    <p class="kpi-number" id="kpi-pets" style="color: #2ec4b6;">0</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Servicios Ofrecidos</h3>
+                    <p class="kpi-number" id="kpi-services" style="color: #bc84ee;">0</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Total Recaudado</h3>
+                    <p class="kpi-number" id="kpi-revenue" style="color: #22c55e;">$0.00</p>
+                </div>
+            </div>
+
+            <section id="clientes" class="admin-section">
+                <div class="section-header-search">
+                    <h2>Control de Usuarios</h2>
+                    <input type="text" id="search-clients" class="search-input" placeholder="Buscar cliente por nombre o correo...">
+                </div>
+                <div class="admin-two-columns">
+                    <div class="admin-card">
+                        <h3>Agregar Nuevo Cliente</h3>
+                        <form id="form-add-client" action="#" method="POST">
+                            <div class="input-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" id="client-name-input" placeholder="Ej. María Gómez" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Teléfono</label>
+                                <input type="text" id="client-phone-input" placeholder="Ej. 8888-8888" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" id="client-email-input" placeholder="Ej. cliente@correo.com" required>
+                            </div>
+                            <button type="submit" class="btn-submit-admin" style="background: #4f46e5;">Agregar a la Tabla de Clientes</button>
+                        </form>
+                        <p style="font-size:12px;color:#94a3b8;margin-top:10px;">El estado de cuenta queda siempre como <strong>Activo</strong> al agregarse.</p>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Estado de Cuenta</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-clients-body">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="adopciones" class="admin-section">
+                <div class="section-header-search">
+                    <h2>Gestión de Mascotas</h2>
+                    <input type="text" id="search-requests" class="search-input" placeholder=" Buscar por mascota, raza o postulante...">
+                </div>
+                <div class="admin-two-columns">
+                    <div class="admin-card">
+                        <h3>Agregar Nueva Mascota</h3>
+                        <form id="form-add-pet" action="#" method="POST">
+                            <div class="input-group">
+                                <label>Nombre de la Mascota</label>
+                                <input type="text" id="pet-name-input" placeholder="Ej. Bobby" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Especie / Raza</label>
+                                <input type="text" id="pet-breed-input" placeholder="Ej. Perro - Golden" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Edad (años)</label>
+                                <input type="number" id="pet-age-input" min="0" placeholder="Ej. 2" required>
+                            </div>
+                            <button type="submit" class="btn-submit-admin" style="background: #ff9f1c;">Publicar e Ingresar al Sistema</button>
+                        </form>
+                    </div>
+
+                    <div class="items-preview-container">
+                        <div class="dashboard-block">
+                            <h3 class="block-title title-orange">Solicitudes de Adopción por Revisar</h3>
+                            <div class="preview-list" id="requests-list">
+                                </div>
+                        </div>
+
+                        <div class="dashboard-block">
+                            <h3 class="block-title title-teal">Inventario de Mascotas Registradas</h3>
+                            <div class="preview-list" id="all-pets-list">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="servicios" class="admin-section">
+                <div class="section-header-search">
+                    <h2>Gestion de Servicios</h2>
+                    <input type="text" id="search-services" class="search-input" placeholder="Buscar servicio activo...">
+                </div>
+                <div class="admin-two-columns">
+                    <div class="admin-card">
+                        <h3>Dar de Alta Nuevo Servicio</h3>
+                        <form id="form-add-service" action="#" method="POST">
+                            <div class="input-group">
+                                <label>Nombre del Servicio</label>
+                                <input type="text" id="service-name-input" placeholder="Ej. Odontología Canina" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Precio Promedio (₡)</label>
+                                <input type="number" id="service-price-input" placeholder="Ej. 45" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Tipo de Servicio</label>
+                                <input type="text" id="service-desc-input" placeholder="Ej. Salud / Estética / Cuidado" required>
+                            </div>
+                            <button type="submit" class="btn-submit-admin" style="background: #2ec4b6;">Guardar Servicio</button>
+                        </form>
+                    </div>
+
+                    <div class="items-preview-container">
+                        <div class="admin-card-list">
+                            <h3>Servicios Activos en la Plataforma</h3>
+                            <div class="preview-list" id="services-list">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="registro" class="admin-section">
+                <div class="section-header-search">
+                    <h2>Registro de Adopciones</h2>
+                    <input type="text" id="search-adoptions" class="search-input" placeholder="Buscar por cliente o mascota...">
+                </div>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID adopcion</th>
+                                <th>Cliente</th>
+                                <th>Mascota</th>
+                                <th>Fecha de Adopción</th>
+                                <th>Costo Pagado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-adoptions-body">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="finanzas" class="admin-section">
+                <div class="section-header-search">
+                    <h2>Finanzas</h2>
+                </div>
+                <div class="kpi-container" style="margin-bottom: 25px;">
+                    <div class="kpi-card">
+                        <h3>Total Recaudado</h3>
+                        <p class="kpi-number" id="finance-total" style="color: #22c55e;">$0.00</p>
+                    </div>
+                    <div class="kpi-card">
+                        <h3>Adopciones Cobradas</h3>
+                        <p class="kpi-number" id="finance-count" style="color: #4f46e5;">0</p>
+                    </div>
+                    <div class="kpi-card">
+                        <h3>Ticket Promedio</h3>
+                        <p class="kpi-number" id="finance-average" style="color: #ff9f1c;">$0.00</p>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID Adopción</th>
+                                <th>Cliente</th>
+                                <th>Mascota</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-finance-body">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/session.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

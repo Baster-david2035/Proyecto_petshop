@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Contratar Servicios</title>
+    <link rel="stylesheet" href="css/servicios.css">
+    <link rel="stylesheet" href="css/adopcion.css"> </head>
+<body class="client-body-layout">
+
+    <nav class="navbar">
+        <div class="nav-logo">🐾 PetShop</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Inicio</a></li>
+            <li><a href="servicios.html" class="active">Servicios</a></li>
+            <li><a href="adopcion.html">Adopción</a></li>
+            <li><a href="login.html" onclick="cerrarSesion()">Salir</a></li>
+        </ul>
+    </nav>
+
+    <main class="services-container">
+        <header class="client-header">
+            <h1>Prepara la bienvenida de tu mascota</h1>
+            <p>Selecciona los servicios que deseas programar para su llegada.</p>
+        </header>
+
+        <div class="services-layout-grid">
+            
+            <div class="services-column-left">
+                <h3>Servicios Disponibles</h3>
+                <div id="services-list-container" class="services-list-stack">
+                    </div>
+            </div>
+
+            <div class="services-column-right">
+                <div class="checkout-card">
+                    <h3 class="card-title-icon">Agendar Retiro en Local</h3>
+                    <p class="card-subtitle">Indica qué día pasarás a recoger a tu nuevo compañero.</p>
+                    <input type="date" id="pickup-date" class="input-date-custom" required>
+                </div>
+
+                <div class="checkout-card">
+                    <h3>Resumen de Contratación</h3>
+                    
+                    <div id="checkout-receipt" class="receipt-items-box">
+                        <p class="receipt-empty-text">No has seleccionado ningún servicio aún.</p>
+                    </div>
+                    
+                    <hr class="receipt-divider">
+                    
+                    <div class="receipt-total-row">
+                        <span>Total a Pagar:</span>
+                        <span id="checkout-total">₡0.00</span>
+                    </div>
+                    
+                    <button id="btn-proceed-pay" class="btn-submit-client btn-disabled" disabled>
+                        Proceder al Pago
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="paymentModal" class="modal-overlay">
+        
+        <div id="modal-pay-step" class="modal-box modal-box-animate">
+            <span class="close-modal" id="btn-close-payment">&times;</span>
+            
+            <div class="logo-container">
+                <div class="logo-icon color-warning">💳</div>
+                <h2>Pago Seguro</h2>
+                <p>Monto final a transferir: <strong id="modal-payment-total">₡0.00</strong></p>
+            </div>
+
+            <form id="paymentForm">
+                <div class="input-group">
+                    <label>Número de Tarjeta</label>
+                    <input type="text" id="card-number" placeholder="xxxx xxxx xxxx xxxx" maxlength="19" required>
+                </div>
+                <div class="input-row-grid">
+                    <div class="input-group">
+                        <label>Vencimiento</label>
+                        <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5" required>
+                    </div>
+                    <div class="input-group">
+                        <label>CVC / CVV</label>
+                        <input type="password" id="card-cvv" placeholder="•••" maxlength="4" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit-client">Finalizar Pago</button>
+            </form>
+        </div>
+
+        <div id="modal-invoice-step" class="modal-box invoice-ticket-style">
+            <div class="invoice-header">
+                <h2>🐾 PETSHOP</h2>
+                <p class="invoice-subtitle">Comprobante de Pago Electrónico</p>
+                <p id="invoice-order-number" class="invoice-order-id">Orden: #PS-XXXXXX</p>
+            </div>
+            
+            <div class="invoice-meta-data">
+                <div><strong>Fecha Emisión:</strong> <span id="inv-current-date">--/--/----</span></div>
+                <div><strong>Fecha Retiro Mascota:</strong> <span id="inv-pickup-date">--/--/----</span></div>
+                <div><strong>Estado:</strong> PAGADO (Transacción Exitosa)</div>
+            </div>
+
+            <div class="invoice-breakdown">
+                <div class="breakdown-title">DESGLOSE:</div>
+                <div id="inv-items-list">
+                    </div>
+            </div>
+
+            <div class="invoice-total-row">
+                <span>TOTAL PROCESADO:</span>
+                <span id="inv-total">₡0.00</span>
+            </div>
+
+            <div class="invoice-footer">
+                ¡Gracias por tu confianza!<br>Tu mascota te espera con ansias.
+            </div>
+
+            <button id="btn-invoice-done" class="btn-invoice-close">Listo, volver al Inicio</button>
+        </div>
+
+    </div>
+
+    <script src="js/session.js"></script>
+    <script src="js/servicios.js"></script>
+</body>
+</html>

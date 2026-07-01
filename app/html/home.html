@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Inicio</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="home-body-layout">
+
+    <nav class="navbar">
+        <div class="nav-logo">🐾 PetShop</div>
+        <ul class="nav-links">
+            <li><a href="home.html" class="active">Inicio</a></li>
+            <li><a href="#servicios-sec">Servicios</a></li>
+            <li><a href="adopcion.html">Adopción</a></li>
+            <li><a href="#mis-solicitudes">Mis solicitudes</a></li>
+            <li><a href="login.html" onclick="cerrarSesion()">Salir</a></li>
+        </ul>
+    </nav>
+
+    <header id="inicio" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Todo lo que tu mejor amigo necesita</h1>
+            <p>Amor, cuidado y los mejores productos en un solo lugar.</p>
+            <a href="adopcion.html" class="btn-main">¡Adoptar una Mascota!</a>
+        </div>
+    </header>
+
+    <section id="servicios-sec" class="services-section">
+        <div class="services-container">
+            
+            <div class="services-info">
+                <h2>Nuestros Servicios Especializados</h2>
+                <p>Nos apasiona el bienestar de tu mascota. Diseñamos espacios y atenciones exclusivas para que se sientan como en casa mientras reciben el mejor cuidado profesional.</p>
+            </div>
+
+            <div class="carousel-wrapper-relative">
+                
+                <button id="btnPrev" class="carousel-arrow-btn arrow-left" title="Anterior">◀️</button>
+                
+                <div class="horizontal-carousel-container">
+                    <div class="horizontal-track" id="carouselTrack">
+                        
+                        <div class="service-card">
+                            <img src="images/images4.jpg" alt="Vet">
+                            <div class="service-card-overlay">
+                                <h3>Consulta Clínica y Veterinaria</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <img src="images/images1.jpeg" alt="Pel">
+                            <div class="service-card-overlay">
+                                <h3>Estética y Peluquería Canina</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <img src="images/images2.jpg" alt="Gua">
+                            <div class="service-card-overlay">
+                                <h3>Cuidados Especiales</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <img src="images/images3.jpg" alt="Vet">
+                            <div class="service-card-overlay">
+                                <h3>Adopción Responsable</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button id="btnNext" class="carousel-arrow-btn arrow-right" title="Siguiente">▶️</button>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="mis-solicitudes" class="requests-tracking-section">
+        <div class="requests-centered-container">
+            <h2>Seguimiento de mis Adopciones</h2>
+            <p class="requests-subtitle">Aquí puedes revisar el estado en tiempo real de tus solicitudes para integrar un nuevo miembro a tu hogar.</p>
+
+            <div class="user-requests-container" id="user-requests-container">
+                <p class="receipt-empty-text" id="no-requests-message">Cargando tus solicitudes...</p>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/session.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Adopciones</title>
+    <link rel="stylesheet" href="css/adopcion.css">
+</head>
+<body class="client-body-layout">
+
+    <nav class="navbar">
+        <div class="nav-logo">🐾 PetShop</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Inicio</a></li>
+            <li><a href="home.html">Servicios</a></li>
+            <li><a href="adopcion.html">Adopción</a></li>
+            <li><a href="home.html">Mis solicitudes</a></li>
+            <li><a href="login.html" onclick="cerrarSesion()">Salir</a></li>
+        </ul>
+    </nav>
+
+    <main class="client-container">
+        
+        <header class="client-header">
+            <h1>Encuentra a tu Compañero Ideal</h1>
+            <p>Cambia una vida, adopta con responsabilidad.</p>
+        </header>
+
+        <div class="adoption-list" id="pets-gallery-container">
+            </div>
+    </main>
+
+    <div id="adoptionModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-modal" id="btn-close-modal">&times;</span>
+            
+            <div class="logo-container">
+                <div class="logo-icon">📋</div>
+                <h2>Solicitud de Adopción</h2>
+                <p>Estás aplicando para: <strong id="modal-pet-name"></strong></p>
+            </div>
+
+            <form id="form-adoption-request" action="#" method="POST">
+                <input type="hidden" id="modal-pet-id">
+
+                <div class="input-group">
+                    <label>¿Por qué deseas adoptar a esta mascota?</label>
+                    <input type="text" id="req-reason" placeholder="Cuéntanos tus motivos" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>¿Tienes espacio seguro / patio?</label>
+                    <select id="req-space" class="select-custom">
+                        <option value="si">Sí, totalmente cerrado</option>
+                        <option value="no">No, vivo en apartamento</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>Horas que la mascota pasará sola al día</label>
+                    <input type="text" id="req-hours" placeholder="Ej. Menos de 4 horas" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>¿Tienes otras mascotas actualmente?</label>
+                    <input type="text" id="req-other-pets" placeholder="Ej. Ninguna / Un perro" required>
+                </div>
+                
+                <button type="submit" class="btn-submit-client">Enviar Postulación</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/session.js"></script>
+    <script src="js/adopcion.js"></script>
+</body>
+</html>
