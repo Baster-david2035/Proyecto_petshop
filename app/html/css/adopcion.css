@@ -1,0 +1,336 @@
+/* ==========================================================================
+ESTILOS GENERALES Y CONFIGURACIÓN BASE
+========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.client-body-layout {
+    display: block;
+    background: #f4f7f6;
+    height: auto;
+    padding-top: 90px;
+}
+
+/* ==========================================================================
+BARRA DE NAVEGACIÓN (NAVBAR)
+========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.nav-logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #64748b;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 4px;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+/* Estado Hover y Activo */
+.nav-links a:hover, 
+.nav-links a.active {
+    color: #2ec4b6;
+}
+
+/* Línea decorativa sutil bajo la pestaña activa */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #2ec4b6;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+CONTENEDOR Y CUADRÍCULA DE MASCOTAS (GRID)
+========================================================================== */
+.client-container {
+    padding: 40px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.client-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.client-header h1 {
+    color: #2ec4b6;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.client-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+.adoption-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pet-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 18px 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pet-list-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.pet-list-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1;
+    min-width: 0;
+}
+
+.pet-list-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.pet-list-info h3 {
+    font-size: 1.15rem;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.pet-list-info p {
+    font-size: 13.5px;
+    color: #64748b;
+}
+
+/* Badges Dinámicos para Etiquetas de Especies */
+.pet-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.badge-perro { background: #e0f2fe; color: #0369a1; }
+.badge-gato { background: #dcfce7; color: #15803d; }
+.badge-loro { background: #fef9c3; color: #a16207; }
+.badge-conejo { background: #f3e8ff; color: #6b21a8; }
+.badge-generico { background: #e2e8f0; color: #475569; }
+.badge-ave { background: #fef08a; color: #854d0e; }      
+.badge-roedor { background: #ffedd5; color: #9a3412; }    
+.badge-huron { background: #fae8ff; color: #86198f; }     
+.badge-pez { background: #e0f7fa; color: #006064; }       
+.badge-reptil { background: #ecfccb; color: #3f6212; }   
+.badge-cerdo { background: #ffe4e6; color: #9f1239; }  
+
+.btn-adopt {
+    background: #2ec4b6;
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.btn-adopt:hover {
+    background: #25a195;
+}
+
+@media (max-width: 600px) {
+    .pet-list-item {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    .pet-list-left {
+        flex-direction: column;
+        text-align: center;
+    }
+    .btn-adopt {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+MODAL DE FORMULARIO DE ADOPCIÓN
+========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 2000;
+}
+
+.modal-overlay.show-modal {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-box {
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #475569;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-icon {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+.logo-container h2 {
+    font-size: 22px;
+    color: #1e293b;
+}
+
+.logo-container p {
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 5px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    color: #475569;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.input-group input, .select-custom {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus, .select-custom:focus {
+    border-color: #2ec4b6;
+}
+
+.select-custom {
+    background: white;
+    cursor: pointer;
+}
+
+.btn-submit-client {
+    width: 100%;
+    background: #ff9f1c;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 5px;
+    transition: background 0.2s;
+}
+
+.btn-submit-client:hover {
+    background: #e58f16;
+}

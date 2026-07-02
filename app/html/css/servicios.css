@@ -1,0 +1,279 @@
+/* ==========================================================================
+DISEÑO DE CONTRATACIÓN DE SERVICIOS 
+========================================================================== */
+
+.services-container {
+    padding: 40px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.services-layout-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 30px;
+}
+
+.services-list-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* --- TARJETAS INTERACTIVAS --- */
+.service-selection-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.service-selection-card:hover {
+    border-color: #cbd5e1;
+    transform: translateX(3px);
+}
+
+.service-selection-card.card-selected {
+    border-color: #2ec4b6;
+    background: #f0fdfa;
+}
+
+.service-checkbox {
+    margin-right: 15px;
+    transform: scale(1.25);
+    accent-color: #2ec4b6;
+}
+
+.service-select-info {
+    flex-grow: 1;
+}
+
+.service-select-info h4 {
+    margin: 0 0 5px 0;
+    color: #1e293b;
+    font-size: 16px;
+}
+
+.service-select-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.service-select-price {
+    font-weight: bold;
+    color: #2ec4b6;
+    font-size: 1.15rem;
+    min-width: 80px;
+    text-align: right;
+}
+
+/* --- SECCIÓN DERECHA: RESUMEN DE COMPRA --- */
+.services-column-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.checkout-card {
+    border: 2px solid #e2e8f0;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+.card-title-icon {
+    margin-top: 0;
+    color: #1e293b;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-subtitle {
+    margin: 4px 0 12px 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.input-date-custom {
+    width: 100%;
+    padding: 11px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #1e293b;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-date-custom:focus {
+    border-color: #2ec4b6;
+}
+
+/* --- DESGLOSE DE RECIBO --- */
+.receipt-items-box {
+    margin: 20px 0;
+    font-size: 14px;
+    color: #475569;
+    min-height: 40px;
+}
+
+.receipt-item-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.receipt-item-row span {
+    color: #475569;
+}
+
+.receipt-item-row strong {
+    color: #1e293b;
+}
+
+.receipt-empty-text {
+    font-style: italic;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.receipt-divider {
+    border: none;
+    border-top: 2px solid #e2e8f0;
+    margin-bottom: 15px;
+}
+
+.receipt-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+.btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    background: #cbd5e1 !important;
+}
+
+/* --- MODAL: COMPROBANTE TICKET --- */
+.invoice-ticket-style {
+    display: none; 
+    flex-direction: column;
+    border-top: 8px solid #2ec4b6;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.invoice-header h2 {
+    margin: 0;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 20px;
+}
+
+.invoice-subtitle {
+    margin: 5px 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.invoice-order-id {
+    margin: 0;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.invoice-meta-data {
+    font-size: 13px;
+    color: #475569;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #cbd5e1;
+    padding-bottom: 10px;
+}
+
+.invoice-meta-data span {
+    font-weight: bold;
+}
+
+.invoice-breakdown {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.breakdown-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #cbd5e1;
+    padding-bottom: 3px;
+}
+
+.invoice-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.invoice-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 5px;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 10px;
+    color: #1e293b;
+}
+
+.invoice-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #64748b;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.btn-invoice-close {
+    margin-top: 25px;
+    width: 100%;
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: background 0.2s;
+}
+
+.btn-invoice-close:hover {
+    background: #334155;
+}
+
+.input-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.color-warning { color: #ff9f1c; }
+.modal-box-animate { transform: translateY(-20px); transition: transform 0.3s ease; }
